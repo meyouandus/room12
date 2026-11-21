@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ROOM12 – Partner Story</title>
+<meta name="theme-color" content="#14192B">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ROOM12 – Partner Story">
+<meta property="og:description" content="Scaling Liverpool City Region's creative businesses through AI, immersive tech and live events. An invitation to founding partners, challenge partners and co-investors.">
+<meta property="og:image" content="https://room12.musicfutures.co.uk/img/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="ROOM12: scaling Liverpool City Region's creative businesses through AI, immersive tech and live events. An invitation to founding partners, challenge partners and co-investors.">
+<style>
+/* PLAN
+   1. Story: the partner deck retold as one long scroll, from the studio to the ask.
+   2. World: arena at night – navy chapters with full-bleed images, paper chapters for the reading.
+   3. Type: Oswald for display and numbers, Public Sans for reading; one coral accent, teal for flow.
+   4. Rhythm: image chapter, reading chapter, numbers chapter – alternating so the scroll breathes.
+   5. Motion: one idea – blocks rise in as they enter; hero image eases back. Off under reduced motion.
+   6. Robust: content visible without JS; works at 400px and 700px; light, dark and system themes. */
+@font-face{font-family:Oswald;src:url(fonts/oswald.woff2) format("woff2");font-weight:200 700;font-display:swap}
+@font-face{font-family:"Public Sans";src:url(fonts/public-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Public Sans";src:url(fonts/public-sans-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Public Sans";src:url(fonts/public-sans-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+
+:root{
+  --navy:#14192B; --navy2:#1C2340; --navy3:#252D50;
+  --coral:#E8553A; --teal:#3FC1B5;
+  --on-navy:#F4F1EA; --on-navy-2:#B9BDCC;
+  --bg:#F4F1EA; --bg2:#E9E4D8; --ink:#14192B; --ink2:#4A5068; --line:#D3CCBB; --coral-ink:#B5381F;
+  --card:#FFFFFF;
+  --wrap:1180px; --pad:clamp(20px,5vw,64px);
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bg:#0F1322; --bg2:#171C31; --ink:#ECE8DF; --ink2:#A9AEC0; --line:#2C3355; --coral-ink:#F07B63; --card:#1A2038;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1322; --bg2:#171C31; --ink:#ECE8DF; --ink2:#A9AEC0; --line:#2C3355; --coral-ink:#F07B63; --card:#1A2038;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.6 "Public Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,.num,.kick{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:600;letter-spacing:-.005em;line-height:1.02;margin:0}
+p{margin:0 0 1em}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+.kick{font-weight:500;font-size:clamp(15px,1.4vw,18px);color:var(--coral-ink);margin-bottom:18px;line-height:1.2}
+.dark .kick,.hero .kick{color:var(--coral)}
+h2{font-size:clamp(36px,5.6vw,72px);max-width:16ch;text-wrap:balance}
+h3{font-size:clamp(22px,2.2vw,28px);font-weight:500;line-height:1.15}
+.lede{font-size:clamp(19px,1.8vw,23px);line-height:1.5;max-width:40ch;color:var(--ink2)}
+.dark .lede{color:var(--on-navy-2)}
+section{position:relative}
+.chapter{padding:clamp(80px,12vw,160px) 0}
+.paper2{background:var(--bg2)}
+.dark{background:var(--navy);color:var(--on-navy)}
+.dark h2,.dark h3{color:var(--on-navy)}
+.credit{font-size:13px;color:var(--ink2);margin-top:14px}
+.dark .credit,.full .credit{color:var(--on-navy-2)}
+
+/* top bar */
+.bar{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad);color:var(--on-navy);pointer-events:none;mix-blend-mode:normal}
+.bar b{font:600 20px/1 Oswald,sans-serif;letter-spacing:.01em;pointer-events:auto;text-decoration:none}
+.bar a{pointer-events:auto}
+.bar .cta{font:600 14px/1 "Public Sans",sans-serif;background:var(--coral);color:#fff;text-decoration:none;padding:11px 16px;border-radius:999px}
+.bar .cta:hover{background:#d24529}
+.bar.solid{background:rgba(20,25,43,.92);backdrop-filter:blur(8px)}
+.progress{position:fixed;left:0;top:0;height:3px;background:var(--coral);width:0;z-index:21}
+
+/* hero */
+.hero{min-height:100svh;display:flex;align-items:flex-end;color:var(--on-navy);overflow:hidden;background:var(--navy)}
+.hero .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 60%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,25,43,.55) 0%,rgba(20,25,43,0) 28%,rgba(20,25,43,.25) 50%,rgba(20,25,43,.94) 100%)}
+.hero .wrap{position:relative;z-index:2;padding-bottom:clamp(48px,9vh,110px);width:100%}
+.hero h1{font-size:clamp(84px,17vw,230px);font-weight:700;line-height:.86;letter-spacing:-.02em}
+.hero h1 span{color:var(--coral)}
+.hero .sub{font:500 clamp(22px,2.8vw,36px)/1.15 Oswald,sans-serif;max-width:22ch;margin:18px 0 22px}
+.hero .inv{max-width:46ch;color:#D9DBE4;font-size:clamp(16px,1.4vw,19px)}
+.hero .who{margin-top:26px;font-size:14px;color:var(--on-navy-2)}
+.scrollcue{position:absolute;right:var(--pad);bottom:clamp(48px,9vh,110px);z-index:2;font-size:13px;color:var(--on-navy-2);writing-mode:vertical-rl}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,40px);margin-top:clamp(40px,6vw,72px)}
+.stat{border-top:2px solid var(--coral);padding-top:18px}
+.num{font-size:clamp(46px,6vw,84px);font-weight:600;line-height:.95;color:inherit}
+.stat p{margin-top:12px;color:var(--ink2);font-size:16px}
+.dark .stat p{color:var(--on-navy-2)}
+.note{margin-top:clamp(36px,5vw,56px);max-width:62ch;font-size:clamp(17px,1.5vw,20px)}
+
+/* split image chapters */
+.split{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,80px);align-items:center}
+.split.rev{grid-template-columns:1fr 1.05fr}
+.split.rev .media{order:2}
+.media img{width:100%;height:auto;border-radius:4px}
+.full{min-height:100svh;display:flex;align-items:flex-end;color:var(--on-navy);background:var(--navy);overflow:hidden}
+.full>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.full::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,25,43,0) 40%,rgba(20,25,43,.9) 100%)}
+.full .wrap{position:relative;z-index:2;padding-bottom:clamp(48px,8vw,100px);width:100%}
+.full h2{max-width:14ch}
+.full .lede{color:#DADCE5;max-width:44ch;margin-top:18px}
+
+/* barriers list */
+.rows{margin-top:clamp(36px,5vw,60px);border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:minmax(150px,280px) 1fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.row h3{font-size:clamp(24px,2.6vw,34px)}
+.row p{margin:0;color:var(--ink2);max-width:52ch}
+
+/* door diagram */
+.door{display:grid;grid-template-columns:1fr auto 1.3fr;align-items:stretch;gap:0;margin-top:clamp(36px,5vw,60px)}
+.door .box{padding:28px;border-radius:4px}
+.door .lexis{background:var(--navy);color:var(--on-navy)}
+.door .lexis .num{font-size:clamp(40px,5vw,64px);color:var(--coral)}
+.door .arena{background:var(--navy3);color:var(--on-navy)}
+.door .arena .num{font-size:clamp(40px,5vw,64px);color:var(--teal)}
+.door .gap{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 14px;font:500 14px/1.2 Oswald,sans-serif;color:var(--coral-ink);text-align:center;min-width:90px}
+.door .gap i{display:block;width:100%;height:3px;background:var(--coral);margin:8px 0;position:relative}
+.door .gap i::after{content:"";position:absolute;right:-2px;top:-5px;border:6.5px solid transparent;border-left:10px solid var(--coral);border-right:0}
+.door p{margin:10px 0 0;color:var(--on-navy-2);font-size:16px}
+.kits{margin-top:14px;font-size:16px;color:var(--ink2)}
+
+/* pair of renders */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,24px);margin-top:clamp(36px,5vw,56px)}
+.pair figure{margin:0}
+.pair img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:4px}
+.pair figcaption{margin-top:12px;font-size:16px;color:var(--on-navy-2)}
+.pair figcaption b{color:var(--on-navy)}
+
+/* place triptych */
+.trip{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:clamp(10px,1.5vw,18px);margin-top:clamp(36px,5vw,56px)}
+.trip figure{margin:0;position:relative;overflow:hidden;border-radius:4px;min-height:200px}
+.trip figure:first-child{grid-row:1/3}
+.trip img{width:100%;height:100%;object-fit:cover}
+.trip figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 16px 14px;background:linear-gradient(180deg,transparent,rgba(20,25,43,.88));color:#F4F1EA;font-size:15px;line-height:1.4}
+.trip figcaption b{font-family:Oswald,sans-serif;font-weight:500;font-size:18px;display:block}
+
+/* partners */
+.logos{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(12px,1.6vw,20px);margin-top:clamp(36px,5vw,56px)}
+.logo{background:var(--navy2);border-radius:4px;padding:24px 20px;display:flex;flex-direction:column;gap:18px}
+.logo .mark{height:92px;display:flex;align-items:center}
+.logo .mark img{max-height:56px;max-width:100%;width:auto;object-fit:contain}
+.logo .mark img.tall{max-height:92px}
+.logo p{margin:0;font-size:15px;line-height:1.5;color:var(--on-navy-2)}
+.logo .tag{font:500 13px/1 Oswald,sans-serif;color:var(--coral)}
+.linked{margin-top:22px;font-size:15px;color:var(--on-navy-2)}
+
+/* columns */
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px);margin-top:clamp(36px,5vw,56px)}
+.col{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:28px 26px}
+.col h3{margin-bottom:16px}
+.col ul{list-style:none;margin:0;padding:0}
+.col li{padding:10px 0 10px 22px;border-top:1px solid var(--line);position:relative;font-size:16px;line-height:1.45}
+.col li::before{content:"";position:absolute;left:0;top:18px;width:9px;height:9px;border-radius:50%;background:var(--teal)}
+
+/* steps (challenge + support) */
+.steps{list-style:none;margin:clamp(40px,5vw,64px) 0 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;counter-reset:s}
+.steps li{position:relative;padding:0 18px 0 0}
+.steps li::before{counter-increment:s;content:counter(s);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--teal);color:var(--navy);font:600 20px/1 Oswald,sans-serif;position:relative;z-index:1}
+.steps li::after{content:"";position:absolute;left:44px;right:0;top:21px;height:2px;background:var(--teal);opacity:.45}
+.steps li:last-child::after{display:none}
+.steps li:last-child::before{background:var(--coral);color:#fff}
+.steps h3{margin:20px 0 8px;font-size:clamp(21px,2vw,26px)}
+.steps p{margin:0;font-size:16px;color:var(--ink2);line-height:1.5}
+.dark .steps p{color:var(--on-navy-2)}
+.after{margin-top:clamp(36px,5vw,52px);padding:24px 26px;border-left:3px solid var(--coral);background:var(--card);max-width:72ch;font-size:17px}
+.dark .after{background:var(--navy2);color:var(--on-navy)}
+
+/* ip */
+.quote{font:500 clamp(40px,6.4vw,86px)/1 Oswald,sans-serif;color:var(--coral-ink);max-width:14ch;margin:clamp(40px,5vw,64px) 0 0;text-wrap:balance}
+
+/* form */
+.form-head{display:flex;gap:clamp(24px,4vw,56px);align-items:flex-start}
+.form-head .fl{flex:0 0 auto;width:clamp(70px,8vw,104px)}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px);margin-top:clamp(36px,5vw,52px)}
+.three div{border-top:2px solid var(--teal);padding-top:18px}
+.three p{color:var(--on-navy-2);font-size:16px;margin:10px 0 0}
+
+/* skills / targets */
+.grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,48px) clamp(20px,3vw,40px);margin-top:clamp(40px,5vw,64px)}
+.bullets{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 40px;margin-top:clamp(36px,5vw,52px)}
+.bullets p{margin:0;font-size:16px;color:var(--ink2);padding-left:18px;border-left:2px solid var(--line)}
+.bullets b{color:var(--ink)}
+
+/* budget */
+.money{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,28px);margin-top:clamp(36px,5vw,56px)}
+.pot{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:30px 28px}
+.pot .num{font-size:clamp(56px,7vw,96px)}
+.pot .k{font:500 22px/1 Oswald,sans-serif;color:var(--coral-ink);margin:6px 0 18px}
+.pot ul{margin:0;padding:0 0 0 20px;font-size:16px;line-height:1.5}
+.pot li{margin:8px 0}
+.direct{margin-top:22px;font-size:clamp(18px,1.6vw,21px);max-width:60ch}
+.direct b{color:var(--coral-ink)}
+
+/* funding bar */
+.fund{margin-top:clamp(36px,5vw,56px)}
+.fbar{display:flex;height:72px;border-radius:4px;overflow:hidden}
+.fbar div{display:flex;align-items:center;padding:0 18px;font:600 clamp(18px,2vw,26px)/1 Oswald,sans-serif;white-space:nowrap}
+.fbar .pub{flex:5;background:var(--on-navy);color:var(--navy)}
+.fbar .pri{flex:3;background:var(--coral);color:#fff}
+.fbar .co{flex:2;background:transparent;border:2px dashed var(--on-navy-2);color:var(--on-navy-2);border-left:0;border-radius:0 4px 4px 0}
+.flegend{display:grid;grid-template-columns:5fr 3fr 2fr;gap:12px;margin-top:14px;font-size:15px;color:var(--on-navy-2);line-height:1.45}
+.flegend b{color:var(--on-navy);display:block}
+.you{margin-top:clamp(28px,4vw,44px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,28px)}
+.you div{background:var(--navy2);padding:24px 26px;border-radius:4px;font-size:16px;color:var(--on-navy-2)}
+.you h3{color:var(--on-navy);margin-bottom:10px;font-size:22px}
+.youhead{font:500 clamp(22px,2.4vw,30px)/1.2 Oswald,sans-serif;color:var(--coral);margin-top:clamp(28px,4vw,40px)}
+
+/* commit */
+.roles{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:clamp(16px,2vw,24px);margin-top:clamp(36px,5vw,56px)}
+.role{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:28px 26px;display:flex;flex-direction:column}
+.role.founding{background:var(--navy);color:var(--on-navy);border-color:var(--navy)}
+.when{font:500 13px/1 Oswald,sans-serif;color:var(--coral-ink);margin-bottom:12px}
+.role.founding .when{color:var(--coral)}
+.role h3{font-size:clamp(26px,2.6vw,34px);margin-bottom:14px}
+.role p{font-size:16px;line-height:1.5}
+.role.founding p{color:#D6D9E3}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 18px}
+.chips span{font-size:14px;padding:6px 12px;border-radius:999px;background:var(--navy3);color:var(--on-navy)}
+.role .foot{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.18);font-weight:600;font-size:15px}
+.role:not(.founding) .foot{border-top-color:var(--line)}
+
+/* statement */
+.statement{min-height:92svh;display:flex;align-items:center;background:var(--navy);color:var(--on-navy);overflow:hidden}
+.statement>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28}
+.statement .wrap{position:relative;z-index:1}
+.statement p.big{font:500 clamp(34px,5.4vw,74px)/1.08 Oswald,sans-serif;max-width:20ch;margin:0}
+.statement p.big em{font-style:normal;color:var(--coral)}
+.statement p.small{margin-top:28px;font-size:clamp(18px,1.6vw,21px);color:#D6D9E3;max-width:44ch}
+
+/* timeline */
+.tl{list-style:none;margin:clamp(40px,5vw,60px) 0 0;padding:0;position:relative}
+.tl::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.tl li{display:grid;grid-template-columns:minmax(150px,230px) 1fr;gap:20px;padding:0 0 30px 44px;position:relative}
+.tl li::before{content:"";position:absolute;left:2px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--teal)}
+.tl li.key::before{background:var(--coral);border-color:var(--coral)}
+.tl .d{font:600 clamp(20px,2vw,26px)/1.15 Oswald,sans-serif}
+.tl li.key .d{color:var(--coral-ink)}
+.tl p{margin:0;color:var(--ink2)}
+
+/* video + ask */
+.film{background:#000}
+.film video{width:100%;max-height:100svh;aspect-ratio:16/9;object-fit:contain;margin:0 auto;background:#000}
+.ask{min-height:100svh;display:flex;align-items:flex-end;color:var(--on-navy);background:var(--navy);overflow:hidden}
+.ask>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ask::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,25,43,.35) 0%,rgba(20,25,43,.55) 40%,rgba(20,25,43,.96) 78%)}
+.ask .wrap{position:relative;z-index:2;padding-bottom:clamp(48px,8vw,96px);width:100%}
+.ask .lede{color:#E2E4EC;max-width:52ch}
+.contact{display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center;justify-content:space-between;margin-top:clamp(32px,4vw,48px);padding-top:28px;border-top:1px solid rgba(255,255,255,.2)}
+.contact .person{font-size:17px;line-height:1.5}
+.contact .person b{font:600 22px/1.3 Oswald,sans-serif;display:block}
+.contact a.mail{display:inline-block;margin-top:14px;background:var(--coral);color:#fff;text-decoration:none;font-weight:700;padding:14px 22px;border-radius:999px}
+.contact a.mail:hover{background:#d24529}
+.contact .uol{height:52px;width:auto}
+.wm{font:700 clamp(40px,5vw,64px)/1 Oswald,sans-serif;letter-spacing:-.01em}
+.wm span{color:var(--coral)}
+footer{background:var(--navy);color:var(--on-navy-2);font-size:13px;padding:22px 0 34px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+
+/* motion: progressive enhancement only */
+.js .rise{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.js .rise.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .rise{opacity:1;transform:none;transition:none}
+}
+
+/* responsive */
+@media (max-width:980px){
+  .logos{grid-template-columns:repeat(2,1fr)}
+  .logos .logo:first-child{grid-column:1/-1}
+  .steps{grid-template-columns:1fr;gap:26px}
+  .steps li{padding:0 0 0 64px;min-height:44px}
+  .steps li::before{position:absolute;left:0;top:0}
+  .steps li::after{left:21px;top:44px;bottom:-26px;right:auto;width:2px;height:auto}
+  .steps h3{margin-top:6px}
+  .roles{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  body{font-size:17px}
+  .stats,.grid6{grid-template-columns:1fr 1fr}
+  .split,.split.rev{grid-template-columns:1fr}
+  .split.rev .media{order:0}
+  .row{grid-template-columns:1fr;gap:6px}
+  .door{grid-template-columns:1fr}
+  .door .gap{flex-direction:row;padding:12px 0;gap:10px;min-width:0}
+  .door .gap i{width:3px;height:28px;margin:0}
+  .door .gap i::after{right:-5px;top:auto;bottom:-6px;border:6.5px solid transparent;border-top:10px solid var(--coral);border-bottom:0}
+  .pair,.money,.you,.three,.bullets{grid-template-columns:1fr}
+  .trip{grid-template-columns:1fr;grid-template-rows:auto}
+  .trip figure:first-child{grid-row:auto}
+  .trip figure{aspect-ratio:4/3}
+  .logos{grid-template-columns:1fr}
+  .fbar{height:auto;flex-wrap:wrap}
+  .fbar div{flex:1 1 100% !important;height:56px;border-radius:0}
+  .fbar .co{border-left:2px dashed var(--on-navy-2)}
+  .flegend{grid-template-columns:1fr}
+  .tl li{grid-template-columns:1fr;gap:4px}
+  .form-head{flex-direction:column}
+  .scrollcue{display:none}
+  .bar .cta{padding:9px 13px;font-size:13px}
+}
+@media (max-width:440px){
+  .stats,.grid6{grid-template-columns:1fr}
+}
+
+/* section nav */
+.bar{gap:24px}
+.secnav{display:flex;gap:clamp(14px,2.2vw,30px);margin-left:auto;margin-right:clamp(8px,1.5vw,20px);opacity:0;transform:translateY(-6px);transition:opacity .35s,transform .35s;pointer-events:none}
+.bar.solid .secnav{opacity:1;transform:none;pointer-events:auto}
+.secnav a{font:500 15px/1 "Public Sans",sans-serif;color:#C9CDD9;text-decoration:none;padding:8px 0;border-bottom:2px solid transparent}
+.secnav a:hover{color:#fff}
+.secnav a.on{color:#fff;border-bottom-color:var(--coral)}
+.secmenu{display:none;position:relative;pointer-events:auto;margin-left:auto}
+.secmenu summary{list-style:none;cursor:pointer;font:600 13px/1 "Public Sans",sans-serif;color:#fff;padding:9px 13px;border:1px solid rgba(255,255,255,.35);border-radius:999px}
+.secmenu summary::-webkit-details-marker{display:none}
+.secmenu div{position:absolute;right:0;top:44px;background:var(--navy);border-radius:8px;padding:8px;min-width:190px;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.secmenu div a{display:block;padding:11px 12px;color:#E2E4EC;text-decoration:none;font-size:15px;border-radius:6px}
+.secmenu div a:hover{background:var(--navy3)}
+section[id]{scroll-margin-top:64px}
+@media (max-width:860px){.secnav{display:none}.secmenu{display:block}}
+@media (prefers-reduced-motion:reduce){.secnav{transition:none}}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+<header class="bar" id="bar">
+  <b>ROOM<span style="color:var(--coral)">12</span></b>
+  <nav class="secnav" aria-label="Sections">
+    <a href="#why">Why ROOM12</a><a href="#studio">The studio</a><a href="#how">How it works</a><a href="#investment">Investment</a><a href="#take-part">Take part</a>
+  </nav>
+  <details class="secmenu"><summary>Sections</summary><div><a href="#why">Why ROOM12</a><a href="#studio">The studio</a><a href="#how">How it works</a><a href="#investment">Investment</a><a href="#take-part">Take part</a></div></details>
+  <a class="cta" href="#ask">Talk to us</a>
+</header>
+
+<main>
+<!-- 1 HERO -->
+<section class="hero" aria-label="ROOM12">
+  <img class="bgimg" id="heroimg" src="img/studio.jpg" alt="Visualisation of the LEXIS immersive studio in Room 12, with trusses, projection and a live sports image on the walls">
+  <div class="wrap">
+    <div class="kick">Industry partner briefing · November 2026</div>
+    <h1>ROOM<span>12</span></h1>
+    <p class="sub">Scaling creative businesses through AI, immersive tech and live events</p>
+    <p class="inv">An invitation to join as a founding partner, challenge partner or co-investor, and work with Liverpool City Region’s creative firms.</p>
+    <p class="who">University of Liverpool (lead) · LJMU · LEX · Adlib · Form</p>
+  </div>
+  <div class="scrollcue" aria-hidden="true">Scroll ↓</div>
+</section>
+
+<!-- 2 MARKET -->
+<section class="full" id="why" aria-labelledby="h-market">
+  <img src="img/audience.jpg" alt="A packed arena audience watching a live event under bright lights" loading="lazy">
+  <div class="wrap">
+    <div class="kick">Why now</div>
+    <h2 id="h-market" class="rise">The market for live fan experience is moving</h2>
+    <p class="lede rise">Clubs, venues and rights holders seek new approaches to spectatorship, new tools for audience insight, and new content and experiences, in the venue and beyond it. Local creative firms can meet this demand.</p>
+  </div>
+</section>
+<section class="chapter dark" aria-label="Market signals">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat rise"><div class="num">US$100m</div><p>Sony Pictures’ stake in Cosm’s immersive venues in 2026: investors are backing new ways to watch live events.</p></div>
+      <div class="stat rise"><div class="num">100,000sf</div><p>Apple Corps’ Beatles experience, opening in Liverpool in 2028: a local buyer for immersive content and tools.</p></div>
+      <div class="stat rise"><div class="num">£79,000</div><p>GVA per job in the City Region’s creative cluster, 25% above the LCR average, with 15,000+ jobs and 29% growth in five years.</p></div>
+    </div>
+    <p class="credit">Sources: LCR Growth Plan 2025–2035; press reports, 2026</p>
+  </div>
+</section>
+
+<!-- 3 BARRIERS -->
+<section class="chapter" aria-labelledby="h-gap">
+  <div class="wrap">
+    <div class="kick">The gap</div>
+    <h2 id="h-gap" class="rise">What holds the region’s creative firms back</h2>
+    <div class="rows">
+      <div class="row rise"><h3>Adoption</h3><p>Not enough time, leadership skills or finance to build AI into creative and production work.</p></div>
+      <div class="row rise"><h3>Validation</h3><p>No small firm can line up a live event, cleared content and a willing rights holder on its own.</p></div>
+      <div class="row rise"><h3>Facilities</h3><p>No studio in the North West combines immersive audio and vision with a direct link into a live arena.</p></div>
+      <div class="row rise"><h3>Commercialisation</h3><p>Little specialist help to protect, price, license and sell new products.</p></div>
+      <div class="row rise"><h3>Workforce</h3><p>Too few trained immersive producers and technicians.</p></div>
+    </div>
+    <p class="credit">Source: Creative UK for DCMS, AI and emerging technology adoption study</p>
+  </div>
+</section>
+
+<!-- 4 WHAT -->
+<section class="chapter paper2" id="studio" aria-labelledby="h-what">
+  <div class="wrap">
+    <div class="kick">What ROOM12 is</div>
+    <h2 id="h-what" class="rise">A programme first. A studio to make it real.</h2>
+    <p class="lede rise" style="margin-top:24px;max-width:56ch">ROOM12 raises the productivity and scale of the region’s creative firms through AI and immersive technology, with live music, sport and games events as the place they prove and sell what they make. It is built around LEXIS, an immersive spectator studio in Room 12 at the M&amp;S Bank Arena.</p>
+    <div class="door rise" role="img" aria-label="Diagram: the LEXIS studio in Room 12 has a direct link into the 10,600-capacity M&S Bank Arena">
+      <div class="box lexis"><div class="num">LEXIS</div><p>Room 12 immersive studio</p></div>
+      <div class="gap">direct link<i></i></div>
+      <div class="box arena"><div class="num">10,600</div><p>capacity M&amp;S Bank Arena: music, sport and games events</p></div>
+    </div>
+    <p class="kits">Plus portable kits that take LEXIS to venues in all six local authorities. Studio fit-out by Adlib; venue partner LEX.</p>
+  </div>
+</section>
+
+<!-- 5 STUDIO FULL -->
+<section class="full" aria-labelledby="h-studio">
+  <img src="img/show.jpg" alt="Adlib render of Room 12 in show light, with immersive projection across walls and floor" loading="lazy">
+  <div class="wrap">
+    <div class="kick">The studio</div>
+    <h2 id="h-studio" class="rise">LEXIS: Room 12</h2>
+    <p class="lede rise">An immersive studio with spatial sound, real-time engines and AI, for creating, testing and validating live-event experiences at scale.</p>
+    <p class="credit">Render: Adlib, LX Visual 1</p>
+  </div>
+</section>
+
+<!-- 6 RENDERS -->
+<section class="chapter dark" aria-labelledby="h-renders">
+  <div class="wrap">
+    <div class="kick">The studio, by design</div>
+    <h2 id="h-renders" class="rise">Fitted out by Adlib: working light and show light</h2>
+    <div class="pair">
+      <figure class="rise"><img src="img/work.jpg" alt="Adlib render of Room 12 in working light with trusses, projectors and an LED wall" loading="lazy"><figcaption><b>Working light.</b> Trusses, projectors, moving-head lighting and an LED wall.</figcaption></figure>
+      <figure class="rise"><img src="img/show.jpg" alt="Adlib render of Room 12 in show light with immersive projection across walls and floor" loading="lazy"><figcaption><b>Show light.</b> Immersive projection and lighting across walls and floor.</figcaption></figure>
+    </div>
+    <p class="note" style="color:var(--on-navy-2)">Extended with spatial audio, capture, real-time engines and AI computing, so firms can build and test without buying high-end kit themselves.</p>
+    <p class="credit">Renders: Adlib, Room 12 Visual 2 and LX Visual 1</p>
+  </div>
+</section>
+
+<!-- 7 PLACE -->
+<section class="chapter" aria-labelledby="h-place">
+  <div class="wrap">
+    <div class="kick">The place</div>
+    <h2 id="h-place" class="rise">Inside the M&amp;S Bank Arena, on the LEX campus</h2>
+    <div class="trip">
+      <figure class="rise"><img src="img/arena.jpg" alt="Exterior of the M&S Bank Arena at Kings Dock" loading="lazy"><figcaption><b>M&amp;S Bank Arena</b>Room 12 sits inside, with a direct link into the 10,600-capacity arena.</figcaption></figure>
+      <figure class="rise"><img src="img/concourse.jpg" alt="The neon-lit arena concourse at dusk on an event day" loading="lazy"><figcaption><b>Concourse</b>Event-day footfall across the LEX campus.</figcaption></figure>
+      <figure class="rise"><img src="img/game.jpg" alt="Courtside basketball action in front of a cheering crowd" loading="lazy"><figcaption><b>Arena</b>Music, sport and games events of every size.</figcaption></figure>
+    </div>
+    <p class="note">LEX brings together the Convention Centre, the Exhibition Centre and the M&amp;S Bank Arena at Kings Dock, on Liverpool’s waterfront. Firms test in real live-event settings, drawing on LEX’s and Adlib’s experience of staging events.</p>
+  </div>
+</section>
+
+<!-- 8 PARTNERS -->
+<section class="chapter dark" aria-labelledby="h-partners">
+  <div class="wrap">
+    <div class="kick">Consortium</div>
+    <h2 id="h-partners" class="rise">The core partners delivering ROOM12</h2>
+    <div class="logos">
+      <div class="logo rise"><div class="mark"><img src="img/uol.png" alt="University of Liverpool"></div><div class="tag">Lead</div><p>Programme lead, with the Centre for Architecture and the Visual Arts (CAVA), the Virtual Engineering Centre and the £7.2m UKRI MusicFutures creative cluster.</p></div>
+      <div class="logo rise"><div class="mark"><img src="img/ljmu_white.png" alt="Liverpool John Moores University"></div><p>Liverpool Screen School: immersive media, audience research and routes for students and graduates.</p></div>
+      <div class="logo rise"><div class="mark"><img src="img/lex_off.png" alt="LEX Liverpool"></div><p>Venue partner and landlord: Room 12, the M&amp;S Bank Arena, the Convention Centre and the Exhibition Centre.</p></div>
+      <div class="logo rise"><div class="mark"><img src="img/adlib_w.png" alt="Adlib"></div><p>Technical design, integration and studio fit-out, with live-industry know-how and workforce pathways.</p></div>
+      <div class="logo rise"><div class="mark"><img class="tall" src="img/form_white.png" alt="Form"></div><p>Leads the venture development and commercialisation workstream.</p></div>
+    </div>
+    <p class="linked">Linked programmes: MusicFutures (UKRI creative cluster) · CoSTAR Spectator Lab (application)</p>
+  </div>
+</section>
+
+<!-- 9 GAIN -->
+<section class="chapter" id="how" aria-labelledby="h-gain">
+  <div class="wrap">
+    <div class="kick">For partners</div>
+    <h2 id="h-gain" class="rise">What partners gain</h2>
+    <div class="cols">
+      <div class="col rise"><h3>Clubs, venues and rights holders</h3><ul><li>Set challenges that matter to your fans and your business</li><li>See working prototypes before you roll them out</li><li>New fan experiences, in the venue and beyond it</li><li>Rights and data terms agreed once</li></ul></div>
+      <div class="col rise"><h3>Technology companies</h3><ul><li>Your kit in an industry-grade immersive studio</li><li>Access to qualified staff</li><li>Tested in real live-event settings</li><li>A trained local workforce and supply chain</li><li>Closer ties with university research and creative firms</li></ul></div>
+      <div class="col rise"><h3>Brands and investors</h3><ul><li>Early sight of tested products and ventures</li><li>Co-fund innovation alongside public money</li><li>A pipeline of firms ready for investment</li><li>A visible role in a flagship City Region programme</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 CHALLENGE -->
+<section class="chapter dark" aria-labelledby="h-chal">
+  <div class="wrap">
+    <div class="kick">How it works</div>
+    <h2 id="h-chal" class="rise">A partner challenge, from problem to proven product</h2>
+    <ol class="steps">
+      <li class="rise"><h3>Set a challenge</h3><p>A club, venue, brand or rights holder names a real problem worth solving.</p></li>
+      <li class="rise"><h3>Creative SMEs</h3><p>Win grants and studio time to answer it.</p></li>
+      <li class="rise"><h3>Prototype</h3><p>Built in LEXIS with industry-grade kit and technical support.</p></li>
+      <li class="rise"><h3>Test live</h3><p>Tested in real live-event settings with LEX and Adlib.</p></li>
+      <li class="rise"><h3>First access</h3><p>The partner who set the challenge gets first look at what works.</p></li>
+    </ol>
+    <p class="after rise">Form leads venture development and commercialisation: pricing, licensing and first sales. A free IP clinic helps rights holders and firms protect existing IP and create new IP together.</p>
+  </div>
+</section>
+
+<!-- 11 IP -->
+<section class="chapter paper2" aria-labelledby="h-ip">
+  <div class="wrap">
+    <div class="kick">Intellectual property</div>
+    <h2 id="h-ip" class="rise">A free IP clinic for both sides of every challenge</h2>
+    <p class="lede rise" style="margin-top:24px;max-width:58ch">Partners bring valuable IP; firms bring their own; some will create new IP together. ROOM12 extends the MusicFutures IP Clinic, an established, free model at LEX Campus, to every challenge.</p>
+    <div class="cols">
+      <div class="col rise"><h3>Rights holders and IP owners</h3><ul><li>Challenge briefs set out what content, data and brand can be used, and how</li><li>Terms agreed before work starts</li></ul></div>
+      <div class="col rise"><h3>Creative firms</h3><ul><li>Free guidance on copyright, trade marks, designs, contracts and licensing</li><li>Firms keep the IP they create</li></ul></div>
+      <div class="col rise"><h3>Co-creation</h3><ul><li>Who owns what in shared IP, agreed up front</li><li>How shared IP is licensed and income shared</li></ul></div>
+    </div>
+    <p class="quote rise">Education first, disputes last.</p>
+    <p class="note">Standard rights, data and IP terms are agreed once, so small firms do not negotiate alone and partners know where they stand. <a href="https://musicfutures.co.uk/ip-clinic/">About the MusicFutures IP Clinic</a></p>
+  </div>
+</section>
+
+<!-- 12 SUPPORT -->
+<section class="chapter" aria-labelledby="h-sup">
+  <div class="wrap">
+    <div class="kick">Support for firms</div>
+    <h2 id="h-sup" class="rise">One route from first idea to first sale</h2>
+    <ol class="steps">
+      <li class="rise"><h3>Join</h3><p>Open calls in all six local authorities, with access vouchers for studio and kit time.</p></li>
+      <li class="rise"><h3>Adopt</h3><p>Staged AI adoption grants (c.£2,500) and training on live projects.</p></li>
+      <li class="rise"><h3>Build</h3><p>Equipment grants (c.£10–25k) for kit firms keep, and studio time in LEXIS with technical support.</p></li>
+      <li class="rise"><h3>Test</h3><p>Challenge fund grants and commissions, tested in real live-event settings.</p></li>
+      <li class="rise"><h3>Sell</h3><p>Led by Form. Venture development, pricing, licensing and first sales.</p></li>
+    </ol>
+    <p class="after rise">Demand-led: firms can enter at any stage. Grants at a 50% intervention rate, matched by firms in cash, staff time or in kind. Sizes indicative.</p>
+  </div>
+</section>
+
+<!-- 13 FORM -->
+<section class="chapter dark" aria-labelledby="h-form">
+  <div class="wrap">
+    <div class="form-head">
+      <img class="fl rise" src="img/form_white.png" alt="Form">
+      <div>
+        <div class="kick">Consortium partner</div>
+        <h2 id="h-form" class="rise">Form: venture development and commercialisation</h2>
+        <p class="lede rise" style="margin-top:22px;max-width:56ch">Form Leadership Ltd leads ROOM12’s venture development and commercialisation workstream, connecting innovations developed and tested through ROOM12 with customers and routes to market.</p>
+      </div>
+    </div>
+    <div class="three">
+      <div class="rise"><h3>Business foundations</h3><p>Customers, pricing, revenue models, rights and IP.</p></div>
+      <div class="rise"><h3>Venture building</h3><p>Experienced commercial operators work alongside founders.</p></div>
+      <div class="rise"><h3>Route to market</h3><p>Licensing and first sales, including to the partners who set challenges.</p></div>
+    </div>
+    <p class="after rise"><b>Track record.</b> Form leads and delivers Gather, Liverpool City Region’s established growth ecosystem for the digital and creative economy. The two programmes are complementary and separately funded: ROOM12 focuses on sector-specific product development and live testing; Gather provides wider regional growth support, with referrals between them.</p>
+  </div>
+</section>
+
+<!-- 14 SKILLS -->
+<section class="chapter" id="investment" aria-labelledby="h-skills">
+  <div class="wrap">
+    <div class="kick">Skills and training</div>
+    <h2 id="h-skills" class="rise">Training built into real work</h2>
+    <div class="stats">
+      <div class="stat rise"><div class="num">c.350</div><p>people trained in AI, immersive and production skills</p></div>
+      <div class="stat rise"><div class="num">25–35</div><p>paid placements</p></div>
+      <div class="stat rise"><div class="num">c.100</div><p>paid freelance commissions</p></div>
+    </div>
+    <div class="bullets">
+      <p class="rise"><b>Founders, staff and freelancers learn on live projects.</b> AI and immersive skills built into real workflows, as Creative UK recommends for DCMS.</p>
+      <p class="rise"><b>Producer and technician pathways with Adlib and LEX.</b> Placements prioritise under-represented groups.</p>
+      <p class="rise"><b>Peer demonstrators and hands-on support.</b> A technician from the University’s Virtual Engineering Centre works with firms in the studio.</p>
+      <p class="rise"><b>Specialists when projects need them.</b> A flexible producer budget brings in freelance producers and specialists.</p>
+    </div>
+    <p class="note">A workforce ready for the Liverpool Creative Campus. Adlib also uses LEXIS to upskill its own teams.</p>
+  </div>
+</section>
+
+<!-- 15 TARGETS -->
+<section class="chapter dark" aria-labelledby="h-scale">
+  <div class="wrap">
+    <div class="kick">Scale</div>
+    <h2 id="h-scale" class="rise">What ROOM12 aims to deliver over three years</h2>
+    <div class="grid6">
+      <div class="stat rise"><div class="num">c.200</div><p>creative businesses supported</p></div>
+      <div class="stat rise"><div class="num">c.150</div><p>new FTE jobs in supported firms</p></div>
+      <div class="stat rise"><div class="num">c.£20m</div><p>increase in turnover across supported firms</p></div>
+      <div class="stat rise"><div class="num">30–45</div><p>products validated in real live-event settings</p></div>
+      <div class="stat rise"><div class="num">c.125</div><p>firms adopting new AI or immersive tools</p></div>
+      <div class="stat rise"><div class="num">15–20%</div><p>target rise in turnover per FTE in supported firms</p></div>
+    </div>
+    <p class="credit">All figures indicative</p>
+  </div>
+</section>
+
+<!-- 16 BUDGET -->
+<section class="chapter" aria-labelledby="h-budget">
+  <div class="wrap">
+    <div class="kick">Public investment</div>
+    <h2 id="h-budget" class="rise">£5m sought from the Combined Authority</h2>
+    <div class="money">
+      <div class="pot rise"><div class="num">£2.5m</div><div class="k">Capital</div><ul><li>Complete the LEXIS installation: truss, lighting, projectors, media server</li><li>Extended fit-out: LED, spatial audio, capture, real-time engines, AI computing</li><li>3–4 portable kits for venues across the six local authorities</li><li>Equipment grants: kit that firms own and keep</li></ul></div>
+      <div class="pot rise"><div class="num">£2.5m</div><div class="k">Revenue</div><ul><li>Venture development and commercialisation, led by Form</li><li>AI adoption grants, challenge fund and access vouchers</li><li>Free IP clinic for firms and partners</li><li>Skills, training and paid placements</li><li>Studio operations, programme coordination and evaluation</li></ul></div>
+    </div>
+    <p class="direct rise">Between <b>£2.4m and £3.0m</b> goes directly to firms and people as grants, business support and training.</p>
+  </div>
+</section>
+
+<!-- 17 FUNDING -->
+<section class="chapter dark" aria-labelledby="h-fund">
+  <div class="wrap">
+    <div class="kick">Funding</div>
+    <h2 id="h-fund" class="rise">£5m public, matched by private co-investment</h2>
+    <div class="fund rise" role="img" aria-label="Funding: £5m from the Combined Authority, a c.£3m private co-investment target, and up to £2m from UKRI CoSTAR only if awarded">
+      <div class="fbar"><div class="pub">£5m</div><div class="pri">c.£3m</div><div class="co">up to £2m</div></div>
+      <div class="flegend">
+        <div><b>Combined Authority</b>sought from the Liverpool City Region Combined Authority</div>
+        <div><b>Private co-investment</b>target: partners, firms and challenge co-funders</div>
+        <div><b>UKRI CoSTAR</b>only if awarded</div>
+      </div>
+    </div>
+    <p class="youhead rise">This is where partners come in: the private share.</p>
+    <div class="you">
+      <div class="rise"><h3>Private co-investment</h3>c.£3m over the three years, with the aim of matching the Combined Authority’s £5m one-for-one within two years of completion, through follow-on investment.</div>
+      <div class="rise"><h3>Already built on</h3>£7.2m UKRI MusicFutures creative cluster at the University of Liverpool, and c.£1m already invested in LEXIS.</div>
+    </div>
+    <p class="credit">Partner contributions can be cash or in kind. Values are indicative now and are confirmed in writing at the project call stage.</p>
+  </div>
+</section>
+
+<!-- 18 COMMIT -->
+<section class="chapter" id="take-part" aria-labelledby="h-commit">
+  <div class="wrap">
+    <div class="kick">Ways to commit</div>
+    <h2 id="h-commit" class="rise">Choose how you take part</h2>
+    <div class="roles">
+      <div class="role founding rise">
+        <div class="when">Now</div>
+        <h3>Founding partner</h3>
+        <p>Join ROOM12 as it is set up: a letter of support now, and a value-in-kind contribution for the full business case, such as:</p>
+        <div class="chips"><span>Equipment</span><span>Software</span><span>Expert time</span><span>Content</span><span>Data</span><span>Access to IP or brand</span><span>Venue access</span></div>
+        <div class="foot">Counted as private co-investment. Named as a founding partner.</div>
+      </div>
+      <div class="role rise">
+        <div class="when">During the programme</div>
+        <h3>Challenge partner</h3>
+        <p>Set one or more challenges and co-fund them alongside the ROOM12 challenge fund.</p>
+        <div class="foot">First look at the products made in answer, with IP handled through the free IP clinic.</div>
+      </div>
+      <div class="role rise">
+        <div class="when">Now and once open</div>
+        <h3>Co-investor</h3>
+        <p>Cash co-investment now, or partner membership and studio hire once ROOM12 is running.</p>
+        <div class="foot">A long-term place in the programme.</div>
+      </div>
+    </div>
+    <p class="credit">Contributions are indicative at this stage. Commitments, with cash and in-kind values, are confirmed in writing for the full business case.</p>
+  </div>
+</section>
+
+<!-- 19 STATEMENT -->
+<section class="statement" aria-label="Statement">
+  <img src="img/game.jpg" alt="" loading="lazy">
+  <div class="wrap">
+    <p class="big rise">University R&amp;D infrastructure. A network of creative partners. Funding, business and IP support. <em>On your doorstep.</em></p>
+    <p class="small rise">ROOM12 brings them together at LEX, in the heart of Liverpool City Region.</p>
+  </div>
+</section>
+
+<!-- 20 TIMELINE -->
+<section class="chapter" aria-labelledby="h-time">
+  <div class="wrap">
+    <div class="kick">Expected timeline</div>
+    <h2 id="h-time" class="rise">From letter of support to a running programme</h2>
+    <ol class="tl">
+      <li class="key rise"><div class="d">Now – Dec 2026</div><p>Letters of support from founding partners</p></li>
+      <li class="key rise"><div class="d">14 Dec 2026</div><p>Expression of Interest submitted to the Combined Authority</p></li>
+      <li class="rise"><div class="d">Early 2027</div><p>UKRI CoSTAR decision expected</p></li>
+      <li class="rise"><div class="d">2027</div><p>Full business case, with partner commitments in writing</p></li>
+      <li class="rise"><div class="d">Mid-2027</div><p>Programme starts and runs for three years</p></li>
+      <li class="rise"><div class="d">After year 3</div><p>Studio run by LEX; can move to the Liverpool Creative Campus</p></li>
+    </ol>
+    <p class="note">The studio is designed to pay its way after the grant, through partner membership, challenge co-funding and commercial hire.</p>
+  </div>
+</section>
+
+<!-- 21 FILM -->
+<section class="film" aria-label="ROOM12 teaser film">
+  <video src="img/teaser-v3.mp4" controls preload="metadata" playsinline poster="img/studio.jpg">ROOM12 teaser film.</video>
+</section>
+
+<!-- 22 ASK -->
+<section class="ask" id="ask" aria-labelledby="h-ask">
+  <img src="img/lex.jpg" alt="" loading="lazy">
+  <div class="wrap">
+    <div class="kick">Next step</div>
+    <h2 id="h-ask" class="rise">What we seek from you</h2>
+    <p class="lede rise" style="margin-top:22px">First, we would like to understand how ROOM12 could make a difference to your organisation and what value you see in it. Then we would like to talk with you about how you might take part: as a founding partner, challenge partner or co-investor.</p>
+    <div class="contact">
+      <div class="person"><b>Prof. Richard Koeck</b>University of Liverpool<br><a class="mail" href="mailto:r.koeck@liverpool.ac.uk?subject=ROOM12%20partnership">r.koeck@liverpool.ac.uk</a></div>
+      <div style="display:flex;align-items:center;gap:32px;flex-wrap:wrap">
+        <div class="wm">ROOM<span>12</span></div>
+        <img class="uol" src="img/uol.png" alt="University of Liverpool">
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap"><span>ROOM12 · University of Liverpool (lead) · LJMU · LEX · Adlib · Form</span><span>Hero: AI-generated visualisation by Richard Koeck from Adlib technical drawings. Renders: Adlib. Figures indicative.</span></div></footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar = document.getElementById('bar'), prog = document.querySelector('.progress'), hero = document.getElementById('heroimg');
+  function onScroll(){
+    var y = window.scrollY || 0, h = document.documentElement.scrollHeight - innerHeight;
+    if (prog) prog.style.width = (h > 0 ? (y / h * 100) : 0) + '%';
+    if (bar) bar.classList.toggle('solid', y > innerHeight * 0.85);
+    if (hero && !reduce && y < innerHeight * 1.2) hero.style.transform = 'scale(' + (1.12 - Math.min(y / innerHeight, 1) * 0.12) + ')';
+  }
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  var links=[].slice.call(document.querySelectorAll('.secnav a')), secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  function spy(){var y=scrollY+innerHeight*0.35,cur=-1;secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i});links.forEach(function(a,i){a.classList.toggle('on',i===cur)})}
+  addEventListener('scroll',spy,{passive:true});spy();
+  document.querySelectorAll('.secmenu a').forEach(function(a){a.addEventListener('click',function(){a.closest('details').open=false})});
+
+  if (reduce || !('IntersectionObserver' in window)) return;
+  var els = [].slice.call(document.querySelectorAll('.rise'));
+  // only hide what is below the fold, so everything on screen at load stays visible
+  els.forEach(function(el){ if (el.getBoundingClientRect().top > innerHeight * 0.92) el.classList.add('pending'); });
+  document.documentElement.classList.add('js');
+  els.forEach(function(el){ if (!el.classList.contains('pending')) el.classList.add('in'); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
+  els.forEach(function(el){ if (el.classList.contains('pending')) io.observe(el); });
+})();
+</script>
+</body>
+</html>
