@@ -47,6 +47,14 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+body.r12-locked > :not(#r12-gate){display:none}
+#r12-gate{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;background:var(--navy);color:var(--on-navy);padding:var(--pad)}
+#r12-gate .gate-card{max-width:340px;width:100%;text-align:center}
+#r12-gate h1{font-size:1.5rem;margin-bottom:10px}
+#r12-gate p{color:var(--on-navy-2);margin:0 0 20px}
+#r12-gate input{width:100%;padding:12px 14px;border:1px solid var(--navy3);border-radius:4px;background:var(--navy2);color:var(--on-navy);font:400 16px "Public Sans",sans-serif;margin-bottom:12px}
+#r12-gate button{width:100%;padding:12px 14px;border:0;border-radius:4px;background:var(--coral);color:#fff;font:600 16px Oswald,sans-serif;letter-spacing:.02em;cursor:pointer}
+#r12-gate .gate-err{color:var(--coral);margin:12px 0 0;font-size:.9rem}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.6 "Public Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 img,video{display:block;max-width:100%}
 a{color:inherit}
@@ -332,7 +340,44 @@ section[id]{scroll-margin-top:64px}
 @media (prefers-reduced-motion:reduce){.secnav{transition:none}}
 </style>
 </head>
-<body>
+<body class="r12-locked">
+<div id="r12-gate">
+  <div class="gate-card">
+    <h1>ROOM<span style="color:var(--coral)">12</span> — Partner Story</h1>
+    <p>Enter the password to continue.</p>
+    <form id="r12-gateform">
+      <input type="password" id="r12-pw" placeholder="Password" autocomplete="off">
+      <button type="submit">Continue</button>
+    </form>
+    <p class="gate-err" id="r12-err" hidden>Wrong password.</p>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'room12-gate', PASSWORD = 'R00m12';
+  function unlock(){
+    document.body.classList.remove('r12-locked');
+    var gate = document.getElementById('r12-gate');
+    if(gate) gate.remove();
+  }
+  try{ if(localStorage.getItem(KEY) === '1'){ unlock(); return; } }catch(e){}
+  var form = document.getElementById('r12-gateform');
+  var pw = document.getElementById('r12-pw');
+  var err = document.getElementById('r12-err');
+  if(pw) pw.focus();
+  if(form) form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(pw.value === PASSWORD){
+      try{ localStorage.setItem(KEY, '1'); }catch(e){}
+      unlock();
+    } else {
+      err.hidden = false;
+      pw.value = '';
+      pw.focus();
+    }
+  });
+})();
+</script>
 <div class="progress" aria-hidden="true"></div>
 <header class="bar" id="bar">
   <b>ROOM<span style="color:var(--coral)">12</span></b>
