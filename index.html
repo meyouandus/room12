@@ -4,16 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ROOM12 – Partner Story</title>
+<meta name="description" content="ROOM12: a Live Event Spectator Lab with venture development and routes to market, scaling Liverpool City Region's creative businesses through AI, immersive tech and live events. An invitation to founding partners, challenge partners and co-investors.">
 <meta name="theme-color" content="#14192B">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="img/icon-180.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ROOM12 – Partner Story">
-<meta property="og:description" content="Scaling Liverpool City Region's creative businesses through AI, immersive tech and live events. An invitation to founding partners, challenge partners and co-investors.">
+<meta property="og:description" content="A Live Event Spectator Lab with venture development and routes to market, scaling Liverpool City Region's creative businesses through AI, immersive tech and live events. An invitation to founding partners, challenge partners and co-investors.">
 <meta property="og:image" content="https://room12.musicfutures.co.uk/img/share.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="description" content="ROOM12: scaling Liverpool City Region's creative businesses through AI, immersive tech and live events. An invitation to founding partners, challenge partners and co-investors.">
 <style>
+@font-face{font-family:Oswald;src:url(fonts/oswald.woff2) format("woff2");font-weight:200 700;font-display:swap}
+@font-face{font-family:"Public Sans";src:url(fonts/public-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Public Sans";src:url(fonts/public-sans-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Public Sans";src:url(fonts/public-sans-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
 /* PLAN
    1. Story: the partner deck retold as one long scroll, from the studio to the ask.
    2. World: arena at night – navy chapters with full-bleed images, paper chapters for the reading.
@@ -21,10 +25,6 @@
    4. Rhythm: image chapter, reading chapter, numbers chapter – alternating so the scroll breathes.
    5. Motion: one idea – blocks rise in as they enter; hero image eases back. Off under reduced motion.
    6. Robust: content visible without JS; works at 400px and 700px; light, dark and system themes. */
-@font-face{font-family:Oswald;src:url(fonts/oswald.woff2) format("woff2");font-weight:200 700;font-display:swap}
-@font-face{font-family:"Public Sans";src:url(fonts/public-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"Public Sans";src:url(fonts/public-sans-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
-@font-face{font-family:"Public Sans";src:url(fonts/public-sans-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
 
 :root{
   --navy:#14192B; --navy2:#1C2340; --navy3:#252D50;
@@ -47,14 +47,6 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body.r12-locked > :not(#r12-gate){display:none}
-#r12-gate{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;background:var(--navy);color:var(--on-navy);padding:var(--pad)}
-#r12-gate .gate-card{max-width:340px;width:100%;text-align:center}
-#r12-gate h1{font-size:1.5rem;margin-bottom:10px}
-#r12-gate p{color:var(--on-navy-2);margin:0 0 20px}
-#r12-gate input{width:100%;padding:12px 14px;border:1px solid var(--navy3);border-radius:4px;background:var(--navy2);color:var(--on-navy);font:400 16px "Public Sans",sans-serif;margin-bottom:12px}
-#r12-gate button{width:100%;padding:12px 14px;border:0;border-radius:4px;background:var(--coral);color:#fff;font:600 16px Oswald,sans-serif;letter-spacing:.02em;cursor:pointer}
-#r12-gate .gate-err{color:var(--coral);margin:12px 0 0;font-size:.9rem}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.6 "Public Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 img,video{display:block;max-width:100%}
 a{color:inherit}
@@ -65,7 +57,7 @@ p{margin:0 0 1em}
 .dark .kick,.hero .kick{color:var(--coral)}
 h2{font-size:clamp(36px,5.6vw,72px);max-width:16ch;text-wrap:balance}
 h3{font-size:clamp(22px,2.2vw,28px);font-weight:500;line-height:1.15}
-.lede{font-size:clamp(19px,1.8vw,23px);line-height:1.5;max-width:40ch;color:var(--ink2)}
+.lede{font-size:clamp(19px,1.8vw,23px);line-height:1.5;max-width:40ch;color:var(--ink2);text-wrap:pretty}
 .dark .lede{color:var(--on-navy-2)}
 section{position:relative}
 .chapter{padding:clamp(80px,12vw,160px) 0}
@@ -87,11 +79,16 @@ section{position:relative}
 /* hero */
 .hero{min-height:100svh;display:flex;align-items:flex-end;color:var(--on-navy);overflow:hidden;background:var(--navy)}
 .hero .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 60%}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,25,43,.55) 0%,rgba(20,25,43,0) 28%,rgba(20,25,43,.25) 50%,rgba(20,25,43,.94) 100%)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,25,43,.55) 0%,rgba(20,25,43,0) 20%,rgba(20,25,43,.62) 46%,rgba(20,25,43,.96) 100%)}
+.hero .wrap{text-shadow:0 2px 16px rgba(20,25,43,.65)}
 .hero .wrap{position:relative;z-index:2;padding-bottom:clamp(48px,9vh,110px);width:100%}
 .hero h1{font-size:clamp(84px,17vw,230px);font-weight:700;line-height:.86;letter-spacing:-.02em}
 .hero h1 span{color:var(--coral)}
-.hero .sub{font:500 clamp(22px,2.8vw,36px)/1.15 Oswald,sans-serif;max-width:22ch;margin:18px 0 22px}
+.hero .parts{font:500 clamp(24px,3vw,40px)/1.12 Oswald,sans-serif;margin:20px 0 0;color:var(--on-navy)}
+.hero .parts>span{display:block}
+.hero .parts>span:first-child{color:var(--coral)}
+.hero .parts .nw{white-space:nowrap}
+.hero .sub{font:400 clamp(18px,1.9vw,25px)/1.25 Oswald,sans-serif;max-width:30ch;margin:16px 0 20px;color:#D9DBE4}
 .hero .inv{max-width:46ch;color:#D9DBE4;font-size:clamp(16px,1.4vw,19px)}
 .hero .who{margin-top:26px;font-size:14px;color:var(--on-navy-2)}
 .scrollcue{position:absolute;right:var(--pad);bottom:clamp(48px,9vh,110px);z-index:2;font-size:13px;color:var(--on-navy-2);writing-mode:vertical-rl}
@@ -134,6 +131,13 @@ section{position:relative}
 .door .gap i::after{content:"";position:absolute;right:-2px;top:-5px;border:6.5px solid transparent;border-left:10px solid var(--coral);border-right:0}
 .door p{margin:10px 0 0;color:var(--on-navy-2);font-size:16px}
 .kits{margin-top:14px;font-size:16px;color:var(--ink2)}
+.twoparts{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,28px);margin-top:clamp(32px,4vw,48px)}
+.twoparts .pt{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--teal);border-radius:4px;padding:28px 26px}
+.twoparts .pt:last-child{border-top-color:var(--coral)}
+.twoparts .pn{font:500 14px/1 Oswald,sans-serif;color:var(--coral-ink);margin-bottom:12px}
+.twoparts h3{margin-bottom:12px}
+.twoparts p{margin:0;font-size:16px;color:var(--ink2);line-height:1.5}
+.lexlead{margin:clamp(36px,5vw,56px) 0 0;font:500 clamp(20px,2vw,24px)/1.3 Oswald,sans-serif}
 
 /* pair of renders */
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,24px);margin-top:clamp(36px,5vw,56px)}
@@ -304,7 +308,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
   .door .gap{flex-direction:row;padding:12px 0;gap:10px;min-width:0}
   .door .gap i{width:3px;height:28px;margin:0}
   .door .gap i::after{right:-5px;top:auto;bottom:-6px;border:6.5px solid transparent;border-top:10px solid var(--coral);border-bottom:0}
-  .pair,.money,.you,.three,.bullets{grid-template-columns:1fr}
+  .pair,.money,.you,.three,.bullets,.twoparts{grid-template-columns:1fr}
   .trip{grid-template-columns:1fr;grid-template-rows:auto}
   .trip figure:first-child{grid-row:auto}
   .trip figure{aspect-ratio:4/3}
@@ -338,6 +342,20 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 section[id]{scroll-margin-top:64px}
 @media (max-width:860px){.secnav{display:none}.secmenu{display:block}}
 @media (prefers-reduced-motion:reduce){.secnav{transition:none}}
+
+.anno{position:relative}
+.tag-ps{position:absolute;left:7%;top:53%;font:600 clamp(11px,1.1vw,14px)/1 "Public Sans",sans-serif;color:#fff;background:rgba(20,25,43,.82);padding:7px 11px 7px 10px;border-radius:999px;border:1.5px solid var(--teal);white-space:nowrap}
+.tag-ps::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--teal);margin-right:8px;vertical-align:1px}
+.anno svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.anno polygon{fill:rgba(63,193,181,.10);stroke:var(--teal);stroke-width:2;stroke-dasharray:7 5;vector-effect:non-scaling-stroke}
+body.r12-locked > :not(#r12-gate){display:none}
+#r12-gate{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;background:var(--navy);color:var(--on-navy);padding:var(--pad)}
+#r12-gate .gate-card{max-width:340px;width:100%;text-align:center}
+#r12-gate h1{font-size:1.5rem;margin-bottom:10px}
+#r12-gate p{color:var(--on-navy-2);margin:0 0 20px}
+#r12-gate input{width:100%;padding:12px 14px;border:1px solid var(--navy3);border-radius:4px;background:var(--navy2);color:var(--on-navy);font:400 16px "Public Sans",sans-serif;margin-bottom:12px}
+#r12-gate button{width:100%;padding:12px 14px;border:0;border-radius:4px;background:var(--coral);color:#fff;font:600 16px Oswald,sans-serif;letter-spacing:.02em;cursor:pointer}
+#r12-gate .gate-err{color:var(--coral);margin:12px 0 0;font-size:.9rem}
 </style>
 </head>
 <body class="r12-locked">
@@ -395,6 +413,7 @@ section[id]{scroll-margin-top:64px}
   <div class="wrap">
     <div class="kick">Industry partner briefing · November 2026</div>
     <h1>ROOM<span>12</span></h1>
+    <p class="parts"><span>Live Event Spectator Lab</span><span>Venture development · <span class="nw">Routes to market</span></span></p>
     <p class="sub">Scaling creative businesses through AI, immersive tech and live events</p>
     <p class="inv">An invitation to join as a founding partner, challenge partner or co-investor, and work with Liverpool City Region’s creative firms.</p>
     <p class="who">University of Liverpool (lead) · LJMU · LEX · Adlib · Form</p>
@@ -404,11 +423,11 @@ section[id]{scroll-margin-top:64px}
 
 <!-- 2 MARKET -->
 <section class="full" id="why" aria-labelledby="h-market">
-  <img src="img/audience.jpg" alt="A packed arena audience watching a live event under bright lights" loading="lazy">
+  <img src="img/concert.jpg" alt="An audience in an immersive venue cheering a live rock concert streamed onto a vast curved LED wall" loading="lazy">
   <div class="wrap">
     <div class="kick">Why now</div>
     <h2 id="h-market" class="rise">The market for live fan experience is moving</h2>
-    <p class="lede rise">Clubs, venues and rights holders seek new approaches to spectatorship, new tools for audience insight, and new content and experiences, in the venue and beyond it. Local creative firms can meet this demand.</p>
+    <p class="lede rise">Clubs, venues and rights holders seek new approaches to spectatorship, new tools for audience insight, and new content and experiences, in the venue and beyond it. A live concert or match can now be streamed into immersive venues anywhere. LCR creatives across music, games, film and immersive can meet this demand.</p>
   </div>
 </section>
 <section class="chapter dark" aria-label="Market signals">
@@ -442,9 +461,14 @@ section[id]{scroll-margin-top:64px}
 <section class="chapter paper2" id="studio" aria-labelledby="h-what">
   <div class="wrap">
     <div class="kick">What ROOM12 is</div>
-    <h2 id="h-what" class="rise">A programme first. A studio to make it real.</h2>
-    <p class="lede rise" style="margin-top:24px;max-width:56ch">ROOM12 raises the productivity and scale of the region’s creative firms through AI and immersive technology, with live music, sport and games events as the place they prove and sell what they make. It is built around LEXIS, an immersive spectator studio in Room 12 at the M&amp;S Bank Arena.</p>
-    <div class="door rise" role="img" aria-label="Diagram: the LEXIS studio in Room 12 has a direct link into the 10,600-capacity M&S Bank Arena">
+    <h2 id="h-what" class="rise">Two parts, one route to market</h2>
+    <p class="lede rise" style="margin-top:24px;max-width:56ch">ROOM12 raises the productivity and scale of the region’s creative firms through AI and immersive technology, with live music, sport and games events as the place they prove and sell what they make.</p>
+    <div class="twoparts">
+      <div class="pt rise"><div class="pn">Part one</div><h3>Live Event Spectator Lab</h3><p>R&amp;D into how people watch, feel and take part in live music, sport and games. Firms get in through access vouchers and grants, build skills on live projects, and prototype and test in LEXIS with a direct link into the arena.</p></div>
+      <div class="pt rise"><div class="pn">Part two</div><h3>Venture development and commercialisation</h3><p>Led by Form, with a free IP clinic: turning what works in the Spectator Lab into products, licences and first sales, through to routes to market.</p></div>
+    </div>
+    <p class="lexlead rise">The Spectator Lab runs from LEXIS, an immersive studio in Room 12 at the M&amp;S Bank Arena.</p>
+    <div class="door rise" style="margin-top:24px" role="img" aria-label="Diagram: the LEXIS studio in Room 12 has a direct link into the 10,600-capacity M&S Bank Arena">
       <div class="box lexis"><div class="num">LEXIS</div><p>Room 12 immersive studio</p></div>
       <div class="gap">direct link<i></i></div>
       <div class="box arena"><div class="num">10,600</div><p>capacity M&amp;S Bank Arena: music, sport and games events</p></div>
@@ -470,7 +494,7 @@ section[id]{scroll-margin-top:64px}
     <div class="kick">The studio, by design</div>
     <h2 id="h-renders" class="rise">Fitted out by Adlib: working light and show light</h2>
     <div class="pair">
-      <figure class="rise"><img src="img/work.jpg" alt="Adlib render of Room 12 in working light with trusses, projectors and an LED wall" loading="lazy"><figcaption><b>Working light.</b> Trusses, projectors, moving-head lighting and an LED wall.</figcaption></figure>
+      <figure class="rise"><div class="anno"><img src="img/work.jpg" alt="Adlib render of Room 12 in working light with trusses, projectors and an LED wall; the plain left wall is marked as a projection surface" loading="lazy"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="0.4,25 49.6,37.6 49.6,75.6 0.4,84.8"/></svg><span class="tag-ps" aria-hidden="true">Projection surface</span></div><figcaption><b>Working light.</b> Trusses, projectors, moving-head lighting and an LED wall.</figcaption></figure>
       <figure class="rise"><img src="img/show.jpg" alt="Adlib render of Room 12 in show light with immersive projection across walls and floor" loading="lazy"><figcaption><b>Show light.</b> Immersive projection and lighting across walls and floor.</figcaption></figure>
     </div>
     <p class="note" style="color:var(--on-navy-2)">Extended with spatial audio, capture, real-time engines and AI computing, so firms can build and test without buying high-end kit themselves.</p>
@@ -504,7 +528,7 @@ section[id]{scroll-margin-top:64px}
       <div class="logo rise"><div class="mark"><img src="img/adlib_w.png" alt="Adlib"></div><p>Technical design, integration and studio fit-out, with live-industry know-how and workforce pathways.</p></div>
       <div class="logo rise"><div class="mark"><img class="tall" src="img/form_white.png" alt="Form"></div><p>Leads the venture development and commercialisation workstream.</p></div>
     </div>
-    <p class="linked">Linked programmes: MusicFutures (UKRI creative cluster) · CoSTAR Spectator Lab (application)</p>
+    <p class="linked">Linked programmes: MusicFutures (UKRI creative cluster) · UKRI CoSTAR (application pending)</p>
   </div>
 </section>
 
@@ -524,7 +548,7 @@ section[id]{scroll-margin-top:64px}
 <!-- 10 CHALLENGE -->
 <section class="chapter dark" aria-labelledby="h-chal">
   <div class="wrap">
-    <div class="kick">How it works</div>
+    <div class="kick">Spectator Lab · How it works</div>
     <h2 id="h-chal" class="rise">A partner challenge, from problem to proven product</h2>
     <ol class="steps">
       <li class="rise"><h3>Set a challenge</h3><p>A club, venue, brand or rights holder names a real problem worth solving.</p></li>
@@ -585,7 +609,7 @@ section[id]{scroll-margin-top:64px}
       <div class="rise"><h3>Venture building</h3><p>Experienced commercial operators work alongside founders.</p></div>
       <div class="rise"><h3>Route to market</h3><p>Licensing and first sales, including to the partners who set challenges.</p></div>
     </div>
-    <p class="after rise"><b>Track record.</b> Form leads and delivers Gather, Liverpool City Region’s established growth ecosystem for the digital and creative economy. The two programmes are complementary and separately funded: ROOM12 focuses on sector-specific product development and live testing; Gather provides wider regional growth support, with referrals between them.</p>
+    <p class="after rise"><b>Track record.</b> <a href="https://form.studio/">Form</a> is a specialist commercialisation, business growth and scale-up partner, working internationally with some of the most admired businesses across the digital, creative and technology sectors. Form brings expertise in turning innovation into commercial opportunities, accessing new markets and supporting businesses to scale.</p>
   </div>
 </section>
 
